@@ -2,7 +2,6 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TrainingPlan, Exercise } from '@/types';
-import { useAuthStore } from './use-auth-store';
 
 interface TrainingState {
   trainingPlans: TrainingPlan[];
@@ -19,7 +18,6 @@ interface TrainingState {
   // Getters
   getTrainingPlanById: (id: string) => TrainingPlan | undefined;
   getTrainingPlansByUser: (userId: string) => TrainingPlan[];
-  getMyTrainingPlans: () => TrainingPlan[];
   getTrainingPlansByDate: (date: string) => TrainingPlan[];
   getTrainingPlansByDateRange: (startDate: string, endDate: string) => TrainingPlan[];
 }
@@ -258,22 +256,6 @@ export const useTrainingStore = create<TrainingState>()(
         return get().trainingPlans.filter(plan => 
           plan.assignedTo?.includes(userId)
         );
-      },
-      
-      getMyTrainingPlans: () => {
-        const { user } = useAuthStore.getState();
-        
-        if (!user) return [];
-        
-        if (user.role === 'coach') {
-          // Coaches see plans they created
-          return get().trainingPlans.filter(plan => plan.createdBy === user.id);
-        } else {
-          // Dancers see plans assigned to them
-          return get().trainingPlans.filter(plan => 
-            plan.assignedTo?.includes(user.id)
-          );
-        }
       },
       
       getTrainingPlansByDate: (date) => {

@@ -1,8 +1,8 @@
 export const colors = {
   // Brand colors
   primary: '#2C3469', // Primary Dark Blue
-  secondary: '#2EA9E1', // Accent Light Blue
   primaryLight: '#3D4580', // Slightly lighter version of primary
+  secondary: '#2EA9E1', // Accent Light Blue
   secondaryLight: '#5BBDE8', // Slightly lighter version of secondary
   tertiary: '#1D3557',
   

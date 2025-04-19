@@ -110,7 +110,7 @@ export default function TrainingScreen() {
           renderItem={({ item }) => (
             <TrainingPlanCard
               plan={item}
-              onPress={() => handlePlanPress(item)}
+              onPress={handlePlanPress}
             />
           )}
           contentContainerStyle={styles.plansList}

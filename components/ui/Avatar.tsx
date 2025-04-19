@@ -95,7 +95,7 @@ export const Avatar: React.FC<AvatarProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.primaryLight,
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden',
